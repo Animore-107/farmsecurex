@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>FarmSecureX Dashboard</title>
+
+<link rel="stylesheet" href="farmsecurex.css">
+
+</head>
+
+<body>
+
+<div class="main-layout">
+
+<!-- VERTICAL LOGO PANEL -->
+
+<div class="sidebar">
+
+<div class="logo">
+🌾
+<h2>FarmSecureX</h2>
+<p>Smart Agriculture Monitoring</p>
+</div>
+
+<button class="toggle" onclick="toggleMode()">
+Toggle Mode
+</button>
+
+</div>
+
+
+<!-- MAIN DASHBOARD -->
+
+<div class="dashboard">
+
+<div class="header">
+Farm Monitoring Dashboard
+</div>
+
+
+<div class="container">
+
+<div class="card">
+<h3>Continuity Sensor</h3>
+<div class="status ok">
+OK
+</div>
+</div>
+
+
+<div class="card">
+<h3>Motor Movement</h3>
+<div class="status moving">
+MOVING
+</div>
+</div>
+
+
+<div class="card">
+<h3>Live Location</h3>
+
+<a class="mapbtn"
+href="https://maps.google.com/?q=18.5204,73.8567"
+target="_blank">
+Open Map
+</a>
+
+</div>
+
+
+<div class="card">
+
+<h3>Maintenance Mode</h3>
+
+<a href="/maintenance_on">
+<button class="enable">ENABLE</button>
+</a>
+
+<a href="/maintenance_off">
+<button class="disable">DISABLE</button>
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function toggleMode(){
+document.body.classList.toggle("dark-mode");
+}
+
+</script>
+
+</body>
+</html>
