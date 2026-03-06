@@ -10,79 +10,105 @@
 
 <link rel="stylesheet" href="farmsecurex.css">
 
+<!-- ICON LIBRARY -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 </head>
 
 <body>
 
 <div class="main-layout">
 
-<!-- VERTICAL LOGO PANEL -->
+<!-- SIDEBAR -->
 
 <div class="sidebar">
 
 <div class="logo">
-🌾
+<i class="fa-solid fa-seedling logo-icon"></i>
 <h2>FarmSecureX</h2>
 <p>Smart Agriculture Monitoring</p>
 </div>
 
 <button class="toggle" onclick="toggleMode()">
-Toggle Mode
+<i class="fa-solid fa-circle-half-stroke"></i> Theme
 </button>
 
 </div>
 
 
-<!-- MAIN DASHBOARD -->
+<!-- DASHBOARD -->
 
 <div class="dashboard">
 
 <div class="header">
-Farm Monitoring Dashboard
+<i class="fa-solid fa-shield-halved"></i>
+Security Monitoring
 </div>
 
 
 <div class="container">
 
+<!-- Cable Continuity -->
+
 <div class="card">
-<h3>Continuity Sensor</h3>
+
+<i class="fa-solid fa-link sensor-icon"></i>
+
+<h3>Cable Continuity</h3>
+
 <div class="status ok">
 OK
 </div>
+
 </div>
 
 
+<!-- Motor Movement -->
+
 <div class="card">
+
+<i class="fa-solid fa-gear sensor-icon"></i>
+
 <h3>Motor Movement</h3>
+
 <div class="status moving">
 MOVING
 </div>
+
 </div>
 
 
+<!-- GPS -->
+
 <div class="card">
+
+<i class="fa-solid fa-location-dot sensor-icon"></i>
+
 <h3>Live Location</h3>
 
 <a class="mapbtn"
 href="https://maps.google.com/?q=18.5204,73.8567"
 target="_blank">
+
 Open Map
+
 </a>
 
 </div>
 
 
+<!-- Maintenance Toggle -->
+
 <div class="card">
+
+<i class="fa-solid fa-screwdriver-wrench sensor-icon"></i>
 
 <h3>Maintenance Mode</h3>
 
-<a href="/maintenance_on">
-<button class="enable">ENABLE</button>
-</a>
-
-<a href="/maintenance_off">
-<button class="disable">DISABLE</button>
-</a>
+<label class="switch">
+<input type="checkbox">
+<span class="slider"></span>
+</label>
 
 </div>
 
