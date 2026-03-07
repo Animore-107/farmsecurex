@@ -13,6 +13,10 @@
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
+<!-- FIREBASE -->
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
 </head>
 
 <body>
@@ -60,7 +64,7 @@ Theme
 </div>
 
 
-<!-- MAIN CONTENT -->
+<!-- MAIN DASHBOARD -->
 
 <div class="dashboard">
 
@@ -72,34 +76,41 @@ Security Monitoring
 
 <div class="container">
 
+<!-- CONTINUITY -->
+
 <div class="card">
 
 <h3>Cable Continuity</h3>
 
-<div class="status ok">
+<div class="status ok" id="continuityStatus">
 OK
 </div>
 
 </div>
 
 
+<!-- MOTOR -->
+
 <div class="card">
 
 <h3>Motor Movement</h3>
 
-<div class="status moving">
-MOVING
+<div class="status moving" id="motorStatus">
+SAFE
 </div>
 
 </div>
 
+
+<!-- GPS -->
 
 <div class="card">
 
 <h3>Live Location</h3>
 
 <a class="mapbtn"
-href="https://maps.google.com/?q=18.5204,73.8567"
+id="mapButton"
+href="#"
 target="_blank">
 
 Open Map
@@ -109,12 +120,14 @@ Open Map
 </div>
 
 
+<!-- MAINTENANCE -->
+
 <div class="card">
 
 <h3>Maintenance Mode</h3>
 
 <label class="switch">
-<input type="checkbox">
+<input type="checkbox" id="maintenanceSwitch">
 <span class="slider"></span>
 </label>
 
@@ -152,29 +165,98 @@ function showSection(section){
 
 const text = {
 
-home:"FarmSecureX is a smart agricultural security monitoring system designed to monitor cable continuity, motor movement and equipment location in real time.",
+home:"FarmSecureX monitors agricultural equipment security in real time.",
 
-continuity:"Cable continuity monitoring ensures that the wiring and communication lines in the system are intact and not damaged.",
+continuity:"Cable continuity monitoring ensures communication lines are intact.",
 
-motor:"Motor movement monitoring uses gyroscope sensors to detect whether the motor is moving or stationary.",
+motor:"Motor movement monitoring uses gyroscope sensors to detect movement.",
 
-gps:"The GPS module provides live location tracking of the equipment using satellite positioning.",
+gps:"The GPS module provides real-time equipment location.",
 
-maintenance:"Maintenance mode disables the monitoring system temporarily for inspection or servicing."
+maintenance:"Maintenance mode disables monitoring during inspection."
 
 }
 
 document.getElementById("popup-text").innerText = text[section];
-
 document.getElementById("popup").style.display = "flex";
 
 }
 
 function closePopup(){
-
 document.getElementById("popup").style.display = "none";
-
 }
+
+
+/* ==========================
+FIREBASE CONFIG
+========================== */
+
+var firebaseConfig = {
+apiKey: "API_KEY",
+authDomain: "farmx-d22be.firebaseapp.com",
+databaseURL: "https://farmx-d22be-default-rtdb.firebaseio.com",
+projectId: "farmx-d22be",
+storageBucket: "farmx-d22be.appspot.com",
+messagingSenderId: "123456",
+appId: "APP_ID"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+var db = firebase.database();
+
+
+/* ==========================
+READ CONTINUITY STATUS
+========================== */
+
+db.ref("farmsecurex/continuity").on("value", function(snapshot){
+
+document.getElementById("continuityStatus").innerText = snapshot.val();
+
+});
+
+
+/* ==========================
+READ MOTOR STATUS
+========================== */
+
+db.ref("farmsecurex/motor").on("value", function(snapshot){
+
+document.getElementById("motorStatus").innerText = snapshot.val();
+
+});
+
+
+/* ==========================
+READ GPS LOCATION
+========================== */
+
+db.ref("farmsecurex/gps").on("value", function(snapshot){
+
+var data = snapshot.val();
+
+var maplink = "https://maps.google.com/?q="+data.lat+","+data.lon;
+
+document.getElementById("mapButton").href = maplink;
+
+});
+
+
+/* ==========================
+MAINTENANCE SWITCH CONTROL
+========================== */
+
+document.getElementById("maintenanceSwitch")
+.addEventListener("change", function(){
+
+var state = this.checked;
+
+firebase.database().ref("farmsecurex").update({
+maintenance: state
+});
+
+});
 
 </script>
 
