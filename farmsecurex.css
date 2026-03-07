@@ -6,19 +6,13 @@ font-family:Segoe UI, Arial;
 transition:0.3s;
 }
 
-/* BACKGROUND IMAGE */
-
 body{
 
-background-image:url("farm.jpg");
-background-size:cover;
-background-position:center;
-background-repeat:no-repeat;
-background-attachment:fixed;
+background:url("farm.jpg") center/cover no-repeat fixed;
 
 }
 
-/* DARK OVERLAY */
+/* overlay */
 
 body::before{
 
@@ -30,85 +24,85 @@ width:100%;
 height:100%;
 
 background:linear-gradient(
-rgba(0,0,0,0.35),
-rgba(0,60,20,0.45)
+rgba(0,0,0,0.4),
+rgba(0,80,40,0.45)
 );
 
 z-index:-1;
 
 }
 
-/* MAIN LAYOUT */
+/* layout */
 
 .main-layout{
-
 display:flex;
 height:100vh;
-
 }
 
-/* SIDEBAR */
+/* sidebar */
 
 .sidebar{
 
-width:240px;
-background:rgba(16,60,32,0.9);
+width:250px;
+background:rgba(12,50,25,0.95);
 color:white;
 
 display:flex;
 flex-direction:column;
 justify-content:space-between;
-align-items:center;
 
-padding:40px 20px;
-
-backdrop-filter:blur(6px);
+padding:30px 20px;
 
 }
 
-/* LOGO */
+/* logo */
 
 .logo{
-
 text-align:center;
-
+margin-bottom:30px;
 }
 
-.logo-icon{
-
-font-size:40px;
+.logo i{
+font-size:35px;
 color:#4CAF50;
+}
+
+/* menu */
+
+.menu{
+list-style:none;
+}
+
+.menu li{
+
+padding:12px;
+margin:10px 0;
+cursor:pointer;
+
+border-radius:8px;
 
 }
 
-.logo h2{
+.menu li:hover{
 
-margin-top:10px;
-font-size:24px;
-
-}
-
-.logo p{
-
-font-size:12px;
-opacity:0.8;
+background:#2e7d32;
 
 }
 
-/* THEME BUTTON */
+/* toggle */
 
 .toggle{
 
 background:#2e7d32;
 border:none;
-padding:10px 18px;
+padding:10px;
 border-radius:20px;
 color:white;
 cursor:pointer;
 
 }
 
-/* DASHBOARD */
+/* dashboard */
 
 .dashboard{
 
@@ -116,8 +110,6 @@ flex:1;
 padding:40px;
 
 }
-
-/* HEADER */
 
 .header{
 
@@ -127,117 +119,76 @@ margin-bottom:30px;
 
 }
 
-/* CONTAINER */
+/* cards */
 
 .container{
 
 display:grid;
-
 grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-
 gap:25px;
 
 }
-
-/* CARD */
 
 .card{
 
 background:rgba(255,255,255,0.9);
 
-padding:30px;
+padding:25px;
 
 border-radius:14px;
 
-box-shadow:0 10px 30px rgba(0,0,0,0.35);
-
 text-align:center;
 
-}
+box-shadow:0 10px 25px rgba(0,0,0,0.35);
 
-/* CARD HOVER */
+}
 
 .card:hover{
-
-transform:translateY(-8px);
-box-shadow:0 12px 35px rgba(0,0,0,0.45);
-
+transform:translateY(-6px);
 }
 
-/* SENSOR ICON */
-
-.sensor-icon{
-
-font-size:30px;
-margin-bottom:10px;
-color:#2e7d32;
-
-}
-
-/* STATUS */
+/* status */
 
 .status{
 
 font-size:24px;
 font-weight:bold;
-margin-top:10px;
 
 }
 
-.ok{
+.ok{color:#2e7d32;}
+.moving{color:#1565c0;}
 
-color:#2e7d32;
-
-}
-
-.moving{
-
-color:#1565c0;
-
-}
-
-/* MAP BUTTON */
+/* map button */
 
 .mapbtn{
 
 display:inline-block;
-
+margin-top:10px;
 background:#2e7d32;
 color:white;
-
 padding:10px 18px;
-
 border-radius:20px;
-
 text-decoration:none;
-
-margin-top:10px;
 
 }
 
-/* SWITCH BUTTON */
+/* switch */
 
-.switch {
-
+.switch{
 position:relative;
 display:inline-block;
 width:60px;
 height:30px;
-
 }
 
-.switch input {
-
+.switch input{
 opacity:0;
-width:0;
-height:0;
-
 }
 
-.slider {
+.slider{
 
 position:absolute;
-cursor:pointer;
 top:0;
 left:0;
 right:0;
@@ -249,10 +200,10 @@ border-radius:30px;
 
 }
 
-.slider:before {
+.slider:before{
 
-position:absolute;
 content:"";
+position:absolute;
 
 height:24px;
 width:24px;
@@ -264,39 +215,86 @@ background:white;
 
 border-radius:50%;
 
-transition:0.3s;
-
 }
 
-input:checked + .slider {
+input:checked + .slider{
 
 background:#2e7d32;
 
 }
 
-input:checked + .slider:before {
+input:checked + .slider:before{
 
 transform:translateX(28px);
 
 }
 
-/* DARK MODE */
+/* popup */
+
+.popup{
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+display:none;
+
+align-items:center;
+justify-content:center;
+
+background:rgba(0,0,0,0.6);
+
+}
+
+.popup-content{
+
+background:white;
+
+padding:30px;
+
+border-radius:12px;
+
+max-width:400px;
+
+text-align:center;
+
+animation:pop 0.3s ease;
+
+}
+
+.close{
+
+position:absolute;
+top:10px;
+right:20px;
+cursor:pointer;
+font-size:25px;
+
+}
+
+@keyframes pop{
+
+from{transform:scale(0.8)}
+to{transform:scale(1)}
+
+}
+
+/* dark mode */
 
 .dark-mode .card{
 
-background:rgba(30,30,30,0.9);
+background:#1e1e1e;
 color:white;
 
 }
 
-.dark-mode .sidebar{
+.dark-mode .popup-content{
 
-background:#0f2a16;
-
-}
-
-.dark-mode .mapbtn{
-
-background:#1b5e20;
+background:#1e1e1e;
+color:white;
 
 }

@@ -10,8 +10,8 @@
 
 <link rel="stylesheet" href="farmsecurex.css">
 
-<!-- ICON LIBRARY -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 </head>
 
@@ -24,19 +24,43 @@
 <div class="sidebar">
 
 <div class="logo">
-<i class="fa-solid fa-seedling logo-icon"></i>
+<i class="fa-solid fa-seedling"></i>
 <h2>FarmSecureX</h2>
-<p>Smart Agriculture Monitoring</p>
+<p>Smart Agri Monitoring</p>
 </div>
 
+<ul class="menu">
+
+<li onclick="showSection('home')">
+<i class="fa-solid fa-house"></i> Home
+</li>
+
+<li onclick="showSection('continuity')">
+<i class="fa-solid fa-link"></i> Cable Continuity
+</li>
+
+<li onclick="showSection('motor')">
+<i class="fa-solid fa-gear"></i> Motor Movement
+</li>
+
+<li onclick="showSection('gps')">
+<i class="fa-solid fa-location-dot"></i> GPS Location
+</li>
+
+<li onclick="showSection('maintenance')">
+<i class="fa-solid fa-screwdriver-wrench"></i> Maintenance
+</li>
+
+</ul>
+
 <button class="toggle" onclick="toggleMode()">
-<i class="fa-solid fa-circle-half-stroke"></i> Theme
+Theme
 </button>
 
 </div>
 
 
-<!-- DASHBOARD -->
+<!-- MAIN CONTENT -->
 
 <div class="dashboard">
 
@@ -48,11 +72,7 @@ Security Monitoring
 
 <div class="container">
 
-<!-- Cable Continuity -->
-
 <div class="card">
-
-<i class="fa-solid fa-link sensor-icon"></i>
 
 <h3>Cable Continuity</h3>
 
@@ -63,11 +83,7 @@ OK
 </div>
 
 
-<!-- Motor Movement -->
-
 <div class="card">
-
-<i class="fa-solid fa-gear sensor-icon"></i>
 
 <h3>Motor Movement</h3>
 
@@ -78,11 +94,7 @@ MOVING
 </div>
 
 
-<!-- GPS -->
-
 <div class="card">
-
-<i class="fa-solid fa-location-dot sensor-icon"></i>
 
 <h3>Live Location</h3>
 
@@ -97,11 +109,7 @@ Open Map
 </div>
 
 
-<!-- Maintenance Toggle -->
-
 <div class="card">
-
-<i class="fa-solid fa-screwdriver-wrench sensor-icon"></i>
 
 <h3>Maintenance Mode</h3>
 
@@ -118,10 +126,54 @@ Open Map
 
 </div>
 
+
+<!-- POPUP PANEL -->
+
+<div id="popup" class="popup">
+
+<div class="popup-content">
+
+<span class="close" onclick="closePopup()">&times;</span>
+
+<div id="popup-text"></div>
+
+</div>
+
+</div>
+
+
 <script>
 
 function toggleMode(){
 document.body.classList.toggle("dark-mode");
+}
+
+function showSection(section){
+
+const text = {
+
+home:"FarmSecureX is a smart agricultural security monitoring system designed to monitor cable continuity, motor movement and equipment location in real time.",
+
+continuity:"Cable continuity monitoring ensures that the wiring and communication lines in the system are intact and not damaged.",
+
+motor:"Motor movement monitoring uses gyroscope sensors to detect whether the motor is moving or stationary.",
+
+gps:"The GPS module provides live location tracking of the equipment using satellite positioning.",
+
+maintenance:"Maintenance mode disables the monitoring system temporarily for inspection or servicing."
+
+}
+
+document.getElementById("popup-text").innerText = text[section];
+
+document.getElementById("popup").style.display = "flex";
+
+}
+
+function closePopup(){
+
+document.getElementById("popup").style.display = "none";
+
 }
 
 </script>
